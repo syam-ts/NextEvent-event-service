@@ -1,7 +1,7 @@
  
-import { IGuest } from "../../domain/entities/Guest";  
-import { GuestModel } from "../database/Schema/GuestSchema";
-import { OrganizerModel } from "../database/Schema/organizerSchema";
+// import { IGuest } from "../../domain/entities/Guest";  
+// import { GuestModel } from "../database/Schema/GuestSchema";
+// import { OrganizerModel } from "../database/Schema/organizerSchema";
 import { IEvent } from "../domain/entities/Event";
 import { IEventRepository } from "../domain/interfaces/IEventRepository";
 import { EventModel } from "./database/Schema/eventSchema";
@@ -40,16 +40,16 @@ export class EventRepositorDb implements IEventRepository {
 
         if (!newEvent) throw new Error("Event not created");
 
-        const updateOrganization = await OrganizerModel.findByIdAndUpdate(
-            organizerId,
-            {
-                $addToSet: {
-                    createdEvents: newEvent._id,
-                },
-                $inc: { totalEventsCreated: 1 },
-            }
-        );
-
+        // const updateOrganization = await OrganizerModel.findByIdAndUpdate(
+        //     organizerId,
+        //     {
+        //         $addToSet: {
+        //             createdEvents: newEvent._id,
+        //         },
+        //         $inc: { totalEventsCreated: 1 },
+        //     }
+        // );
+let updateOrganization 
         if (!updateOrganization) throw new Error("could not update organization");
 
         return;
@@ -69,7 +69,9 @@ export class EventRepositorDb implements IEventRepository {
         currentPage: number,
         filter: string
     ): Promise<IEvent[]> {
-        const guest = await GuestModel.findById(guestId).lean<IGuest>();
+        // const guest = await GuestModel.findById(guestId).lean<IGuest>();
+
+        let guest: any;
 
         if (!guest) throw new Error("guest not found");
 
