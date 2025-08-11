@@ -9,7 +9,7 @@ import EventRoute from "./presentation/routes/eventRoute";
 const connectDB = new ConnectDB();
 
 class Server {
-    
+
     private app: Express;
     private port: number;
     private frontendUrl: string;
@@ -22,7 +22,7 @@ class Server {
         }),
             (this.app = express());
         this.port = parseInt(process.env.PORT || "4000");
-        this.frontendUrl = process.env.FRONTEND_URL as string;
+        this.frontendUrl = process.env.FRONTEND_URL as string || 'http://localhost:3000';
         this.corsMethods = ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"];
         this.eventRoute = new EventRoute();
 
