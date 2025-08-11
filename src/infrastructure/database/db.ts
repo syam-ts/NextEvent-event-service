@@ -5,7 +5,10 @@ class ConnectDB {
     private _mongo_uri: string;
 
     constructor() {
-        dotenv.config({}), (this._mongo_uri = process.env.MONGO_URI as string);
+        dotenv.config({}),
+            (this._mongo_uri =
+                (process.env.MONGO_URI as string) ||
+                "mongodb+srv://syamnandhu3:sovOVXaD9YvakDAo@event.wqxteeh.mongodb.net/?retryWrites=true&w=majority&appName=event");
     }
 
     public async connect(): Promise<void> {
