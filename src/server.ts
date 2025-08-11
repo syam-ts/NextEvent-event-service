@@ -1,19 +1,20 @@
-import express, { Express, Router } from "express";
-import dotenv from 'dotenv'
-import cookieParser from "cookie-parser";
+import cors from "cors";
+import dotenv from "dotenv";
 import morgan from "morgan";
-import cors from "cors"; 
-import EventRoute from "./presentation/exress-http/routes/eventRoute"; 
+import cookieParser from "cookie-parser";
+import express, { Express } from "express";
 import ConnectDB from "./infrastructure/database/db";
+import EventRoute from "./presentation/routes/eventRoute";
 
 const connectDB = new ConnectDB();
 
 class Server {
+    
     private app: Express;
     private port: number;
     private frontendUrl: string;
-    private corsMethods: string[]; 
-    private eventRoute: EventRoute; 
+    private corsMethods: string[];
+    private eventRoute: EventRoute;
 
     constructor() {
         dotenv.config({
@@ -22,8 +23,8 @@ class Server {
             (this.app = express());
         this.port = parseInt(process.env.PORT || "4000");
         this.frontendUrl = process.env.FRONTEND_URL as string;
-        this.corsMethods = ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"]; 
-        this.eventRoute = new EventRoute(); 
+        this.corsMethods = ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"];
+        this.eventRoute = new EventRoute();
 
         this.configureMiddlewares();
         this.configuredRoute();
@@ -46,8 +47,8 @@ class Server {
         this.app.use(morgan("dev"));
     }
 
-    private configuredRoute(): void { 
-        this.app.use("/api/event", this.eventRoute.router); 
+    private configuredRoute(): void {
+        this.app.use("/api/event", this.eventRoute.router);
     }
 
     private async connectToDatabase(): Promise<void> {
