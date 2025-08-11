@@ -1,6 +1,6 @@
-import { Router } from "express"; 
-import { verifyToken } from "../../middlewares/verifyToken";
+import { Router } from "express";  
 import { EventController } from "../controller/eventController";
+import { verifyToken } from "../../infrastructure/external/AuthService";
 
 class EventRoute {
     public router: Router;
