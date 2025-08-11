@@ -1,4 +1,6 @@
-import { IEventRepository } from "../../domain/interfaces/IEventRepository";
+import { IEventRepository } from "../domain/interfaces/IEventRepository";
+
+ 
 
 interface IBody {
     eventName: string;
