@@ -1,13 +1,14 @@
 import { Request, Response } from "express";
-import { EventRepositorDb } from "../../infrastructure/repositories/eventRepositoryDb";
-import { CreateEvent } from "../../user-cases/event/createEvent";
-import { HttpStatusCode } from "../../helper/constants/statusCodes";
-import { GetMyEvents } from "../../user-cases/event/getMyEvent";
-import { GetAllEvents } from "../../user-cases/event/getAllEvents";
-import { ViewEvent } from "../../user-cases/event/viewEvent";
-import { LatestEvent } from "../../user-cases/event/latestEvent";
+import { EventRepositorDb } from "../../infrastructure/eventRepositoryDb";
+import { CreateEvent } from "../../use-cases/createEvent";
+import { GetMyEvents } from "../../use-cases/getMyEvents";
+import { GetAllEvents } from "../../use-cases/getAllEvents";
+import { LatestEvent } from "../../use-cases/latestEvent";
+import { ViewEvent } from "../../use-cases/viewEvent";
+import { HttpStatusCode } from "../../util/constants/stautsMessage";
 
 export class EventController {
+    
     public eventRepo: EventRepositorDb;
     public createEventUsecase: CreateEvent;
     public getMyEventsUsecase: GetMyEvents;

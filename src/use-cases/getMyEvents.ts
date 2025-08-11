@@ -1,4 +1,4 @@
-import { IEventRepository } from "../../domain/interfaces/IEventRepository";
+import { IEventRepository } from "../domain/interfaces/IEventRepository";
 
 export class GetMyEvents {
   constructor(private eventRepo: IEventRepository) {}
